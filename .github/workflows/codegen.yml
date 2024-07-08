@@ -1,0 +1,37 @@
+name: Generate Code from OpenAPI
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  generate_code:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate typescript-node client
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+          generator: typescript-node
+          openapi-file: api.yml
+          command-args: >
+            --output generated/typescript-node-client
+
+      - name: Generate nodejs-express-server
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+          generator: nodejs-express-server
+          openapi-file: api.yml
+          command-args: >
+            --output generated/nodejs-express-server
+
+      - name: Commit generated
+        run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'yourname@yourcompany.com'
+          git add generated/
+          git commit -am "Update generated"
+          git push
