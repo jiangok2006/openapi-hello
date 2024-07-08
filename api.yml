@@ -10,3 +10,13 @@ paths:
       responses:
         '200':
           description: Successful response
+          headers:
+            X-Rate-Limit:
+              schema:
+                type: integer
+              description: Calls per hour allowed by the user
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: "Hello, World!"
