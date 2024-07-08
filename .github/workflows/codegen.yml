@@ -1,8 +1,8 @@
 name: Generate Code from OpenAPI
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: [main]
 
 jobs:
   generate_code:
