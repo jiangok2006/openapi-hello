@@ -4,7 +4,7 @@ const Service = require('./Service');
 /**
 * Returns a list of stuff
 *
-* no response value expected for this operation
+* returns String
 * */
 const listGET = () => new Promise(
   async (resolve, reject) => {

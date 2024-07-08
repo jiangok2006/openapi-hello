@@ -12,7 +12,19 @@ paths:
       operationId: listGET
       responses:
         "200":
+          content:
+            text/plain:
+              example: "Hello, World!"
+              schema:
+                type: string
           description: Successful response
+          headers:
+            X-Rate-Limit:
+              description: Calls per hour allowed by the user
+              explode: false
+              schema:
+                type: integer
+              style: simple
       x-eov-operation-handler: controllers/DefaultController
 components:
   schemas: {}
